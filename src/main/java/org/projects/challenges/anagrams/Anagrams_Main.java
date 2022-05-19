@@ -19,6 +19,7 @@ public class Anagrams_Main {
         String result  = solution.execute("a gentleman", "elegant man");
         System.out.println(result);
     }
+
 }
 
 class Solution{
@@ -26,6 +27,7 @@ class Solution{
 
         a = a.replaceAll(" ", "");
         b = b.replaceAll(" ", "");
+
 
         char[] aArray = a.toCharArray();
         char[] bArray = b.toCharArray();
