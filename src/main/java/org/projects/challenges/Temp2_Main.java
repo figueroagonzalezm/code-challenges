@@ -1,63 +1,74 @@
 package org.projects.challenges;
 
-import java.sql.Array;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
-public class Temp2_Main {
-    public static void main(String[] args) {
-//        String valueToAvoid = "z";
-//        List<String> list = new ArrayList<>(Arrays.asList("hello", "howz", "are", "youz"));
-//
-//        list.stream()
-//                .filter(str->!str.contains(valueToAvoid))
-//                .collect(Collectors.toList())
-//                .forEach(System.out::println);
-//        list.forEach(System.out::println);
-//        List<Integer> numbers = List.of(10, 9, 8, 7, 6, 5, 4, 3, 2,3, 1);
-//        numbers.stream().sorted()
-//                .distinct()
-//                .forEach(System.out::println);
+class Prime{
+    void checkPrime(int... values){
+        System.out.println("checkPrime:::::::::::::::::::::::");
 
-
-        String word =  "abcba";
-
-
-        String vowels = "aeiou";
-        int vowelsCount = 0;
-        int consonantsCount = 0;
-        for (int i = 0; i < word.length(); i++) {
-            if(vowels.contains(word.charAt(i)+"")){
-                vowelsCount++;
-            }else{
-                consonantsCount++;
-            }
-        }
-        System.out.println("consonantes: "+ consonantsCount +" vocales: "+ vowelsCount);
-
-        word.chars()
-                .boxed()
-                .collect(Collectors.toList());
-
-//        boolean result = IntStream.range(0, word.length() / 2)
-//                .allMatch(i-> {
-//                    System.out.println("valor i: "+i);
-//                    return word.charAt(i) == word.charAt(word.length() - i - 1);
-//                });
-
-
-
-
-
-
-
-
-
+        IntStream.of(values)
+                .forEach(number-> {
+                    boolean prime = true;
+                    for (int i = 2; i < number; i++) {
+                        if(number % i == 0){
+                            prime = false;
+                            break;
+                        }
+                    }
+                    if(prime){
+                        System.out.println(number);
+                    }
+                });
     }
 }
+
+
+public class Temp2_Main {
+
+    public static void main(String[] args) {
+        try{
+            BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+            int n1=Integer.parseInt(br.readLine());
+            int n2=Integer.parseInt(br.readLine());
+            int n3=Integer.parseInt(br.readLine());
+            int n4=Integer.parseInt(br.readLine());
+            int n5=Integer.parseInt(br.readLine());
+            Prime ob=new Prime();
+            ob.checkPrime(n1);
+            ob.checkPrime(n1,n2);
+            ob.checkPrime(n1,n2,n3);
+            ob.checkPrime(n1,n2,n3,n4,n5);
+            Method[] methods=Prime.class.getDeclaredMethods();
+            Set<String> set=new HashSet<>();
+            boolean overload=false;
+            for(int i=0;i<methods.length;i++)
+            {
+                if(set.contains(methods[i].getName()))
+                {
+                    overload=true;
+                    break;
+                }
+                set.add(methods[i].getName());
+
+            }
+            if(overload)
+            {
+                throw new Exception("Overloading not allowed");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+}
+

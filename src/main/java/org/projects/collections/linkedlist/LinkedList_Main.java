@@ -1,4 +1,4 @@
-package org.projects.learning.linkedlist;
+package org.projects.collections.linkedlist;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

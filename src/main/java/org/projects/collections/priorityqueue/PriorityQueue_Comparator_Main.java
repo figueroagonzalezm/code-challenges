@@ -1,4 +1,4 @@
-package org.projects.javaconcepts.priorityqueue;
+package org.projects.collections.priorityqueue;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
